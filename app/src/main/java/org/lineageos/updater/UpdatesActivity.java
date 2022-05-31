@@ -185,24 +185,7 @@ public class UpdatesActivity extends UpdatesListActivity {
                 DateFormat.LONG, BuildInfoUtils.getBuildDateTimestamp()));
 
         if (!mIsTV) {
-            // Switch between header title and appbar title minimizing overlaps
-            final CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
             final AppBarLayout appBar = findViewById(R.id.app_bar);
-            appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-                boolean mIsShown = false;
-
-                @Override
-                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                    int scrollRange = appBarLayout.getTotalScrollRange();
-                    if (!mIsShown && scrollRange + verticalOffset < 10) {
-                        collapsingToolbar.setTitle(getString(R.string.display_name));
-                        mIsShown = true;
-                    } else if (mIsShown && scrollRange + verticalOffset > 100) {
-                        collapsingToolbar.setTitle(null);
-                        mIsShown = false;
-                    }
-                }
-            });
 
             mRefreshAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f,
                     Animation.RELATIVE_TO_SELF, 0.5f);

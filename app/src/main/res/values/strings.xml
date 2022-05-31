@@ -16,7 +16,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Updater</string>
-    <string name="display_name">Updater</string>
+    <string name="display_name">System Update</string>
 
     <!-- Directory where the update files will be downloaded and stored.
          WARNING: The application can and will delete any unknown file. -->
@@ -90,7 +90,7 @@
 
     <string name="snack_update_not_installable">This update can\'t be installed on top of the current build.</string>
 
-    <string name="header_title_text">PixelBlaster-OS\n%1$s</string>
+    <string name="header_title_text">System Update</string>
     <string name="header_android_version">Android <xliff:g id="version" example="7.1.2">%1$s</xliff:g></string>
     <string name="header_last_updates_check">Last checked: <xliff:g id="date" example="1 January 1970">%1$s</xliff:g> (<xliff:g id="time" example="01:23">%2$s</xliff:g>)</string>
 
