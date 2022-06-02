@@ -36,4 +36,9 @@
     <style name="Widget.CustomButton" parent="@style/Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:textColor">@color/theme_accent</item>
     </style>
+
+    <style name="CustomDialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

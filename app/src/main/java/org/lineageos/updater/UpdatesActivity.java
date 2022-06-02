@@ -529,8 +529,8 @@ public class UpdatesActivity extends UpdatesListActivity {
             });
         }
 
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.menu_preferences)
+        new AlertDialog.Builder(this, R.style.CustomDialog)
+                .setTitle("")
                 .setView(view)
                 .setOnDismissListener(dialogInterface -> {
                     prefs.edit()
