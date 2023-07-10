@@ -34,7 +34,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.SystemProperties;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,7 +42,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +53,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -158,24 +155,6 @@ public class UpdatesActivity extends UpdatesListActivity implements UpdateImport
             if (actionBar != null) {
                 actionBar.setDisplayShowTitleEnabled(false);
                 actionBar.setDisplayHomeAsUpEnabled(true);
-                final int statusBarHeight;
-                TypedValue tv = new TypedValue();
-                if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-                    statusBarHeight = TypedValue.complexToDimensionPixelSize(
-                            tv.data, getResources().getDisplayMetrics());
-                } else {
-                    statusBarHeight = 0;
-                }
-                RelativeLayout headerContainer = findViewById(R.id.header_container);
-                recyclerView.setOnApplyWindowInsetsListener((view, insets) -> {
-                    int top = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
-                    CollapsingToolbarLayout.LayoutParams lp =
-                            (CollapsingToolbarLayout.LayoutParams)
-                                    headerContainer.getLayoutParams();
-                    lp.topMargin = top + statusBarHeight;
-                    headerContainer.setLayoutParams(lp);
-                    return insets;
-                });
             }
         }
 
