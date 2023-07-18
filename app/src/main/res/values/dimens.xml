@@ -13,4 +13,5 @@
 -->
 <resources>
     <dimen name="toolbar_height">179dp</dimen>
+    <dimen name="scrim_visible_height_trigger">137dp</dimen>
 </resources>

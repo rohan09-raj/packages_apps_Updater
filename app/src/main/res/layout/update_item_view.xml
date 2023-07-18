@@ -40,16 +40,16 @@
                 android:drawablePadding="8dp"
                 android:maxLines="1"
                 android:paddingBottom="8sp"
-                android:textColor="@color/card_text_color_primary_device_default"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp"
-                tools:text="LineageOS 20" />
+                tools:text=" PixelBlaster-OS 6.3" />
 
             <TextView
                 android:id="@+id/build_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textColor="@color/card_text_color_primary_device_default"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="14sp"
                 tools:text="18 June 2023" />
 
@@ -68,9 +68,10 @@
                         android:id="@+id/progress_bar"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="0dp"
+                        android:layout_height="6dp"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="4sp"
+                        android:layout_gravity="center"
+                        android:progressDrawable="@drawable/progress_horizontal"
                         tools:progress="65" />
 
                     <TextView
@@ -79,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
-                        android:textColor="@color/card_text_color_primary_device_default"
+                        android:textColor="?android:attr/textColorPrimary"
                         tools:text="65%" />
                 </LinearLayout>
 
@@ -91,7 +92,7 @@
                     android:ellipsize="marquee"
                     android:singleLine="true"
                     android:visibility="invisible"
-                    android:textColor="@color/card_text_color_primary_device_default"
+                    android:textColor="?android:attr/textColorPrimary"
                     tools:text="162 of 1.1 GB (3 minutes left)"
                     tools:visibility="visible" />
 
@@ -101,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="8sp"
                     android:singleLine="true"
-                    android:textColor="@color/card_text_color_primary_device_default"
+                    android:textColor="?android:attr/textColorPrimary"
                     tools:text="1.1 GB"
                     tools:visibility="invisible" />
             </RelativeLayout>
