@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="56dp"
+    android:orientation="vertical"
+    android:paddingHorizontal="36dp"
+    android:paddingVertical="16dp">
+
+  <androidx.appcompat.widget.LinearLayoutCompat
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_security_update" />
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="26dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="36sp"
+        tools:text="System update available" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="12dp"
+        android:progressDrawable="@drawable/progress_horizontal"
+        tools:progress="65" />
+
+    <TextView
+        android:id="@+id/progress_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progress"
+        android:layout_gravity="center"
+        android:layout_marginBottom="26dp"
+        android:singleLine="true"
+        android:textColor="?android:attr/textColorPrimary"
+        tools:text="162 of 1.1 GB (3 minutes left)" />
+
+    <TextView
+        android:id="@+id/tv_description_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_title"
+        android:paddingBottom="12dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="14sp"
+        android:text="Improve the security of your device (Pixel 7 Pro)" />
+
+    <TextView
+        android:id="@+id/tv_description_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_build_version"
+        android:paddingBottom="12dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="14sp"
+        android:text="This update fixes critical bugs and improves the performance and stability of your device." />
+
+    <TextView
+        android:id="@+id/tv_description_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_build_date"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="12dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="14sp"
+        tools:text="Downloading updates overa mobile network or while roaming may cause additional charges" />
+
+    <TextView
+        android:id="@+id/tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_build_date"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="10dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="14sp"
+        tools:text="PixelBlaster version: 6.3" />
+
+    <TextView
+        android:id="@+id/tv_update_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_build_date"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="10dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="14sp"
+        tools:text="Update size: 26.44 MB" />
+
+  </androidx.appcompat.widget.LinearLayoutCompat>
+
+  <androidx.appcompat.widget.AppCompatButton
+      android:id="@+id/btn_action"
+      android:layout_width="wrap_content"
+      android:layout_height="40dp"
+      android:layout_gravity="end"
+      android:background="@drawable/bg_button"
+      android:elevation="0dp"
+      android:text="Install" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

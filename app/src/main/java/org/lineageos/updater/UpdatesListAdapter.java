@@ -99,29 +99,25 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final Button mAction;
         private final ImageButton mMenu;
-
-        private final TextView mBuildDate;
-        private final TextView mBuildVersion;
-        private final TextView mBuildSize;
-
+        private final TextView mHeaderTitle;
+        private final TextView mUpdateVersion;
+        private final TextView mUpdateSize;
         private final LinearLayout mProgress;
         private final ProgressBar mProgressBar;
         private final TextView mProgressText;
-        private final TextView mPercentage;
 
         public ViewHolder(final View view) {
             super(view);
-            mAction = view.findViewById(R.id.update_action);
+            mAction = view.findViewById(R.id.btn_action);
             mMenu = view.findViewById(R.id.update_menu);
+            mHeaderTitle = view.findViewById(R.id.header_title);
 
-            mBuildDate = view.findViewById(R.id.build_date);
-            mBuildVersion = view.findViewById(R.id.build_version);
-            mBuildSize = view.findViewById(R.id.build_size);
+            mUpdateVersion = view.findViewById(R.id.tv_version);
+            mUpdateSize = view.findViewById(R.id.tv_update_size);
 
             mProgress = view.findViewById(R.id.progress);
             mProgressBar = view.findViewById(R.id.progress_bar);
             mProgressText = view.findViewById(R.id.progress_text);
-            mPercentage = view.findViewById(R.id.progress_percent);
         }
     }
 
@@ -164,9 +160,11 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
             String downloaded = Formatter.formatShortFileSize(mActivity,
                     update.getFile().length());
             String total = Formatter.formatShortFileSize(mActivity, update.getFileSize());
+
+            // Not using this string
             String percentage = NumberFormat.getPercentInstance().format(
                     update.getProgress() / 100.f);
-            viewHolder.mPercentage.setText(percentage);
+
             long eta = update.getEta();
             if (eta > 0) {
                 CharSequence etaString = StringGenerator.formatETA(mActivity, eta * 1000);
@@ -179,6 +177,7 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
             setButtonAction(viewHolder.mAction, Action.PAUSE, downloadId, true);
             viewHolder.mProgressBar.setIndeterminate(update.getStatus() == UpdateStatus.STARTING);
             viewHolder.mProgressBar.setProgress(update.getProgress());
+            viewHolder.mHeaderTitle.setText(R.string.header_downloading);
         } else if (mUpdaterController.isInstallingUpdate(downloadId)) {
             setButtonAction(viewHolder.mAction, Action.CANCEL_INSTALLATION, downloadId, true);
             boolean notAB = !mUpdaterController.isInstallingABUpdate();
@@ -186,24 +185,30 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
                     update.getFinalizing() ?
                             R.string.finalizing_package :
                             R.string.preparing_ota_first_boot);
+
+            // Not using this string
             String percentage = NumberFormat.getPercentInstance().format(
                     update.getInstallProgress() / 100.f);
-            viewHolder.mPercentage.setText(percentage);
+
             viewHolder.mProgressBar.setIndeterminate(false);
             viewHolder.mProgressBar.setProgress(update.getInstallProgress());
+            viewHolder.mHeaderTitle.setText(R.string.header_installing);
         } else if (mUpdaterController.isVerifyingUpdate(downloadId)) {
             setButtonAction(viewHolder.mAction, Action.INSTALL, downloadId, false);
             viewHolder.mProgressText.setText(R.string.list_verifying_update);
             viewHolder.mProgressBar.setIndeterminate(true);
+            viewHolder.mHeaderTitle.setText(R.string.header_installing);
         } else {
             canDelete = true;
             setButtonAction(viewHolder.mAction, Action.RESUME, downloadId, !isBusy());
             String downloaded = Formatter.formatShortFileSize(mActivity,
                     update.getFile().length());
             String total = Formatter.formatShortFileSize(mActivity, update.getFileSize());
+
+            // Not using this string
             String percentage = NumberFormat.getPercentInstance().format(
-                    update.getProgress() / 100.f);
-            viewHolder.mPercentage.setText(percentage);
+                update.getInstallProgress() / 100.f);
+
             viewHolder.mProgressText.setText(mActivity.getString(
                     R.string.list_download_progress_newer, downloaded, total));
             viewHolder.mProgressBar.setIndeterminate(false);
@@ -213,7 +218,7 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
         viewHolder.mMenu.setOnClickListener(getClickListener(update, canDelete, viewHolder.mMenu));
         viewHolder.mProgress.setVisibility(View.VISIBLE);
         viewHolder.mProgressText.setVisibility(View.VISIBLE);
-        viewHolder.mBuildSize.setVisibility(View.INVISIBLE);
+        viewHolder.mUpdateSize.setVisibility(View.INVISIBLE);
     }
 
     private void handleNotActiveStatus(ViewHolder viewHolder, UpdateInfo update) {
@@ -234,11 +239,11 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
             setButtonAction(viewHolder.mAction, Action.DOWNLOAD, downloadId, !isBusy());
         }
         String fileSize = Formatter.formatShortFileSize(mActivity, update.getFileSize());
-        viewHolder.mBuildSize.setText(fileSize);
+        viewHolder.mUpdateSize.setText(fileSize);
 
         viewHolder.mProgress.setVisibility(View.INVISIBLE);
         viewHolder.mProgressText.setVisibility(View.INVISIBLE);
-        viewHolder.mBuildSize.setVisibility(View.VISIBLE);
+        viewHolder.mUpdateSize.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -274,13 +279,14 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
                 throw new RuntimeException("Unknown update status");
         }
 
+        // Not using anymore
         String buildDate = StringGenerator.getDateLocalizedUTC(mActivity,
                 DateFormat.LONG, update.getTimestamp());
+
         String buildVersion = mActivity.getString(R.string.list_build_version,
                 Utils.getDisplayVersion(update.getVersion()));
-        viewHolder.mBuildDate.setText(buildDate);
-        viewHolder.mBuildVersion.setText(buildVersion);
-        viewHolder.mBuildVersion.setCompoundDrawables(null, null, null, null);
+        viewHolder.mUpdateVersion.setText(buildVersion);
+        viewHolder.mUpdateVersion.setCompoundDrawables(null, null, null, null);
 
         if (activeLayout) {
             handleActiveStatus(viewHolder, update);

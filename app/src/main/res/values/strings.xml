@@ -167,4 +167,6 @@
 
     <!-- Blocked dialog -->
     <string name="blocked_update_dialog_message_custom">This update cannot be installed using the updater app. Try installing update via recovery.</string>
+  <string name="header_downloading">Downloading system update...</string>
+    <string name="header_installing">Installing system update...</string>
 </resources>
